@@ -1,7 +1,13 @@
-import User from '../models/user.model.js';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import User from '../models/user.model.js';
+import config from '../config/dotenv.js';
 
-const token = 'aksdjfl';
+const generateToken = (id) => {
+  return jwt.sign({ id }, config.JWT_SECRET, {
+    expiresIn: config.JWT_EXPIRES_IN,
+  });
+};
 
 export const register = async (req, res) => {
   const { name, email, role, password } = req.body;
@@ -20,7 +26,7 @@ export const register = async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
-      token,
+      token: generateToken(user._id),
     });
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -47,7 +53,7 @@ export const login = async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
-      token,
+      token: generateToken(user._id),
     });
   } catch (error) {
     res.status(400).json({ error: error.message });
