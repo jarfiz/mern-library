@@ -6,3 +6,4 @@ export const LOGIN = `${BASE_URL}/users/login`;
 
 // book
 export const ALL_BOOKS = `${BASE_URL}/books`;
+export const BOOK_ID = `${BASE_URL}/books`;
