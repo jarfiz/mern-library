@@ -5,13 +5,16 @@ import { logout } from '../features/auth/authSlice';
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const data = useSelector((state) => state.auth.user);
-  const user = JSON.parse(data);
+  const { user, isLoading } = useSelector((state) => state.auth);
 
   const handleLogout = () => {
     dispatch(logout());
     navigate('/');
   };
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <header className='shadow-sm'>
@@ -24,13 +27,12 @@ const Navbar = () => {
 
         <ul>
           <li>
-            <Link to='/book'>Book</Link>
+            <Link to='/books'>Book</Link>
           </li>
         </ul>
 
         {user ? (
           <div className='space-x-4 text-xl font-medium'>
-            <Link>{user?.name}</Link>
             <button
               className='cursor-pointer rounded-md bg-slate-800 px-4 py-1.5 text-base text-slate-50 outline hover:bg-slate-600'
               onClick={handleLogout}
