@@ -4,6 +4,8 @@ import BookPage from './page/BookPage';
 import BookDetailPage from './page/BookDetailPage';
 import RegisterPage from './page/RegisterPage';
 import LoginPage from './page/LoginPage';
+import DashboardPage from './page/DashboardPage';
+import AccountPage from './page/AccountPage';
 
 const App = () => {
   return (
@@ -14,6 +16,8 @@ const App = () => {
           <Route path='login' element={<LoginPage />} />
           <Route path='books' element={<BookPage />} />
           <Route path='books/:id' element={<BookDetailPage />} />
+          <Route path='dashboard' element={<DashboardPage />} />
+          <Route path='account' element={<AccountPage />} />
         </Route>
       </Routes>
     </div>

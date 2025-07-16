@@ -32,7 +32,9 @@ const Navbar = () => {
         </ul>
 
         {user ? (
-          <div className='space-x-4 text-xl font-medium'>
+          <div className='space-x-4 text-lg font-medium'>
+            <Link to='/dashboard'>Dashboard</Link>
+            <Link to='/account'>Account</Link>
             <button
               className='cursor-pointer rounded-md bg-slate-800 px-4 py-1.5 text-base text-slate-50 outline hover:bg-slate-600'
               onClick={handleLogout}
