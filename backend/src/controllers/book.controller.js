@@ -34,7 +34,7 @@ export const getBookById = async (req, res) => {
 };
 
 export const createBook = async (req, res) => {
-  const { title, author, description, year, publisher } = req.body;
+  const { title, author, description, year, publisher, image } = req.body;
 
   try {
     const newBook = await Book.create({
@@ -43,6 +43,7 @@ export const createBook = async (req, res) => {
       description,
       year,
       publisher,
+      image,
       user: req.user.id,
     });
 
