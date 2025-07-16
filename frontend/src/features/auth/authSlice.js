@@ -9,13 +9,20 @@ const initialState = {
   message: '',
 };
 
-export const register = createAsyncThunk('auth/register', async (user, thunkAPI) => {
-  try {
-    return await authService.register(user);
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
+export const register = createAsyncThunk(
+  'auth/register',
+  async (user, thunkAPI) => {
+    try {
+      return await authService.register(user);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const logout = createAsyncThunk('auth/logout', async () =>
+  localStorage.removeItem('user'),
+);
 
 const authSlice = createSlice({
   name: 'auth',
@@ -37,6 +44,9 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = null;
       });
   },
 });
