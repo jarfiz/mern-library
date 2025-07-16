@@ -6,7 +6,7 @@ const MainLayout = () => {
     <div>
       {/* header */}
       <Navbar />
-      <main>
+      <main className='mx-auto max-w-7xl px-4'>
         <Outlet />
       </main>
 
