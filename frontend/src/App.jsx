@@ -6,6 +6,7 @@ import RegisterPage from './page/RegisterPage';
 import LoginPage from './page/LoginPage';
 import DashboardPage from './page/DashboardPage';
 import AccountPage from './page/AccountPage';
+import BookFormPage from './page/BookFormPage';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path='register' element={<RegisterPage />} />
           <Route path='login' element={<LoginPage />} />
           <Route path='books' element={<BookPage />} />
+          <Route path='books/new' element={<BookFormPage />} />
           <Route path='books/:id' element={<BookDetailPage />} />
           <Route path='dashboard' element={<DashboardPage />} />
           <Route path='account' element={<AccountPage />} />

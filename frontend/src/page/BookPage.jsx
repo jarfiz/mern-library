@@ -25,6 +25,20 @@ const BookPage = () => {
 
   return (
     <>
+      {books.length === 0 && (
+        <div className='grid min-h-screen place-items-center'>
+          <div className='space-y-4 text-center'>
+            <h1 className='text-4xl font-medium'>Book is empty!</h1>
+            <button
+              onClick={() => navigate('/books/new')}
+              className='cursor-pointer rounded-md bg-slate-800 px-4 py-2 text-slate-50 hover:bg-slate-700'
+            >
+              Add book
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className='mt-20 grid grid-cols-4 gap-8'>
         {Array.isArray(books) &&
           books.map((book) => <BookCard key={book._id} book={book} />)}
