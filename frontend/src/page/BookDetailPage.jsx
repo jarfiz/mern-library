@@ -14,7 +14,7 @@ const BookDetailPage = () => {
   useEffect(() => {
     dispatch(getBookById(id));
 
-    return () => dispatch(reset);
+    return () => dispatch(reset());
   }, [dispatch, id]);
 
   return (
