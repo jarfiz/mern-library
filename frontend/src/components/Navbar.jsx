@@ -18,7 +18,7 @@ const Navbar = () => {
 
         <div className='flex items-center space-x-4'>
           <div>
-            <Link to='/login'>Register</Link>
+            <Link to='/login'>Login</Link>
           </div>
           <div>
             <Link to='/register'>Register</Link>
