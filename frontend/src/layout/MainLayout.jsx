@@ -4,7 +4,6 @@ import MainPage from '../page/MainPage';
 
 const MainLayout = () => {
   const location = useLocation();
-  console.log(location);
   return (
     <div>
       {/* header */}
