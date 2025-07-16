@@ -54,7 +54,7 @@ export const createBook = async (req, res) => {
 };
 
 export const updateBook = async (req, res) => {
-  const { title, author, description, year, publisher } = req.body;
+  const { title, author, description, year, publisher, image } = req.body;
 
   try {
     const book = await Book.findById(req.params.id);
@@ -78,6 +78,7 @@ export const updateBook = async (req, res) => {
         description,
         year,
         publisher,
+        image
       },
       { new: true },
     );
