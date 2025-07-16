@@ -3,18 +3,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllBooks, reset } from '../features/book/bookSlice';
 import { toast } from 'sonner';
 import BookCard from '../components/BookCard';
+import { useNavigate } from 'react-router-dom';
 
 const BookPage = () => {
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
   const { books, isLoading, isError, message } = useSelector(
     (state) => state.book,
   );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (isError) toast.error(message);
+    if (!user) navigate('/login');
     dispatch(getAllBooks());
     return () => dispatch(reset);
-  }, [dispatch, isError, message]);
+  }, [dispatch, isError, message, navigate, user]);
 
   console.log(books);
 
