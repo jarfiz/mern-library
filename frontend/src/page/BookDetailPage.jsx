@@ -1,15 +1,21 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBookById, reset } from '../features/book/bookSlice';
-import { useLocation } from 'react-router-dom';
+import { deleteBook, getBookById, reset } from '../features/book/bookSlice';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const BookDetailPage = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { books } = useSelector((state) => state.book);
   const id = location.pathname.split('/')[2];
 
   const { title, image, description, author } = books;
+
+  const handleDelete = () => {
+    dispatch(deleteBook(id));
+    navigate('/books');
+  };
 
   useEffect(() => {
     dispatch(getBookById(id));
@@ -26,7 +32,10 @@ const BookDetailPage = () => {
 
         <p className='text-xl font-medium'>{author}</p>
         <div className='absolute right-10 bottom-4 flex gap-4'>
-          <button className='rounded bg-red-500 px-4 py-2 text-white transition hover:bg-red-600'>
+          <button
+            onClick={handleDelete}
+            className='rounded bg-red-500 px-4 py-2 text-white transition hover:bg-red-600'
+          >
             Delete
           </button>
           <button className='rounded bg-blue-500 px-4 py-2 text-white transition hover:bg-blue-600'>
