@@ -13,7 +13,7 @@ createRoot(document.getElementById('root')).render(
       <Provider store={store}>
         <App />
       </Provider>
-      <Toaster />
+      <Toaster position='top-center' />
     </BrowserRouter>
   </StrictMode>,
 );

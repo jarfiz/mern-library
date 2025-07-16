@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBook, getBookById, reset } from '../features/book/bookSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 const BookDetailPage = () => {
   const location = useLocation();
@@ -14,6 +15,7 @@ const BookDetailPage = () => {
 
   const handleDelete = () => {
     dispatch(deleteBook(id));
+    toast.success('Book deleted');
     navigate('/books');
   };
 
