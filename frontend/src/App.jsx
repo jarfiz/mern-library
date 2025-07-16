@@ -3,6 +3,7 @@ import MainLayout from './layout/MainLayout';
 import BookPage from './page/BookPage';
 import BookDetailPage from './page/BookDetailPage';
 import RegisterPage from './page/RegisterPage';
+import LoginPage from './page/LoginPage';
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<MainLayout />}>
           <Route path='register' element={<RegisterPage />} />
+          <Route path='login' element={<LoginPage />} />
           <Route path='books' element={<BookPage />} />
           <Route path='books/:id' element={<BookDetailPage />} />
         </Route>
