@@ -18,21 +18,17 @@ const BookPage = () => {
     if (isError) toast.error(message);
     if (!user) navigate('/login');
     dispatch(getAllBooks());
-    return () => dispatch(reset);
+    return () => dispatch(reset());
   }, [dispatch, isError, message, navigate, user]);
 
+  if (isLoading) return <h1>loading</h1>;
 
   return (
     <>
-      {isLoading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div className='mt-20 grid grid-cols-4 gap-8'>
-          {books.map((book) => (
-            <BookCard key={book._id} book={book} />
-          ))}
-        </div>
-      )}
+      <div className='mt-20 grid grid-cols-4 gap-8'>
+        {Array.isArray(books) &&
+          books.map((book) => <BookCard key={book._id} book={book} />)}
+      </div>
     </>
   );
 };
