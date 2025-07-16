@@ -21,7 +21,6 @@ const BookPage = () => {
     return () => dispatch(reset);
   }, [dispatch, isError, message, navigate, user]);
 
-  console.log(books);
 
   return (
     <>
