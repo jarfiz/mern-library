@@ -6,6 +6,10 @@ const bookSchema = new Schema(
       type: String,
       required: [true, 'Title is required'],
     },
+    image: {
+      type: String,
+      required: [true, 'Book image is required'],
+    },
     author: {
       type: String,
       required: [true, 'Author is required'],
@@ -24,7 +28,7 @@ const bookSchema = new Schema(
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
-      required: true
+      required: true,
     },
   },
   { timestamps: true },
