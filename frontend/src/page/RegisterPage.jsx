@@ -41,7 +41,7 @@ const RegisterPage = () => {
     if (isError) toast.error(message);
     if (isSuccess || user) {
       toast.success('Creating account success, redirecting to book page');
-      navigate('/book');
+      navigate('/books');
     }
     dispatch(reset());
   }, [dispatch, isError, isSuccess, message, navigate, user]);
