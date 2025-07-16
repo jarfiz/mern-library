@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { REGISTER } from '../constant';
+import { LOGIN, REGISTER } from '../constant';
 
 const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
@@ -18,5 +18,15 @@ const register = async (userData) => {
   return response.data;
 };
 
-const authService = { register };
+const login = async (userData) => {
+  const response = await axiosInstance.post(LOGIN, userData);
+
+  if (response.data) {
+    localStorage.setItem('user', JSON.stringify(response.data));
+  }
+
+  return response.data;
+};
+
+const authService = { register, login };
 export default authService;

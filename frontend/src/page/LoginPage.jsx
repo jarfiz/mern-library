@@ -1,5 +1,8 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { login } from '../features/auth/authSlice';
+import { toast } from 'sonner';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -8,16 +11,40 @@ const LoginPage = () => {
   });
 
   const { email, password } = formData;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user, isError, isLoading, isSuccess, message } = useSelector(
+    (state) => state.auth,
+  );
 
   const handleRegister = (e) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      toast.error('All field are required');
+    }
+
+    const user = { email, password };
+    dispatch(login(user));
   };
+
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      toast.success(`Welcome back user`);
+      navigate('/books');
+    }
+  }, [isError, isSuccess, message, navigate, user]);
 
   return (
     <div className='mt-20'>
@@ -58,6 +85,7 @@ const LoginPage = () => {
         <button
           type='submit'
           className='mt-3 w-full cursor-pointer rounded-md bg-slate-800 py-2 font-medium text-slate-50 outline hover:bg-slate-700'
+          disabled={isLoading}
         >
           Login
         </button>
