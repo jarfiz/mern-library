@@ -1,5 +1,8 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { register, reset } from '../features/auth/authSlice';
+import { toast } from 'sonner';
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -10,15 +13,38 @@ const RegisterPage = () => {
 
   const { name, email, password } = formData;
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user, isError, isLoading, isSuccess, message } = useSelector(
+    (state) => state.auth,
+  );
+
   const handleRegister = (e) => {
     e.preventDefault();
+
+    if (!name || !email || !password) {
+      return toast.error('All field are required');
+    }
+
+    const user = { name, email, password };
+    dispatch(register(user));
   };
+
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
+
+  useEffect(() => {
+    if (isError) toast.error(message);
+    if (isSuccess || user) {
+      toast.success('Creating account success, redirecting to book page');
+      navigate('/book');
+    }
+    dispatch(reset());
+  }, [dispatch, isError, isSuccess, message, navigate, user]);
 
   return (
     <div className='mt-20'>
@@ -70,6 +96,7 @@ const RegisterPage = () => {
         <button
           type='submit'
           className='mt-3 w-full cursor-pointer rounded-md bg-slate-800 py-2 font-medium text-slate-50 outline hover:bg-slate-700'
+          disabled={isLoading}
         >
           Register
         </button>
