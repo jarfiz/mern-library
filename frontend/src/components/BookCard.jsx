@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 const BookCard = ({ book }) => {
   return (
     <Link to={`/books/${book._id}`} key={book._id} className='space-y-4'>
-      <img src={book.image} alt={`${book.title} image`} />
+      <img
+        src={book.image}
+        alt={`${book.title} image`}
+        className='h-96 w-60 object-fill'
+      />
       <div className='space-y-2'>
         <h1 className='text-xl font-bold'>{book.title}</h1>
         <p className='line-clamp-5'>{book.description}</p>
