@@ -25,9 +25,12 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <ul>
+        <ul className='flex items-center space-x-4'>
           <li>
             <Link to='/books'>Book</Link>
+          </li>
+          <li>
+            <Link to='/books/new'>Add Book</Link>
           </li>
         </ul>
 

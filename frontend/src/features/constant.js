@@ -8,3 +8,4 @@ export const LOGIN = `${BASE_URL}/users/login`;
 export const ALL_BOOKS = `${BASE_URL}/books`;
 export const BOOK_ID = `${BASE_URL}/books`;
 export const DELETE_BOOK = `${BASE_URL}/books`;
+export const CREATE_BOOK = `${BASE_URL}/books`;

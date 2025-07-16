@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import Input from '../components/Input';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { createBook } from '../features/book/bookSlice';
 
 const BookFormPage = () => {
   const [formData, setFormData] = useState({
@@ -12,9 +15,14 @@ const BookFormPage = () => {
   });
   const { title, author, image, description, year, publisher } = formData;
   console.log({ title, author, image, description, year, publisher });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const book = { title, author, image, description, year, publisher };
+    dispatch(createBook(book));
+    navigate('/books');
   };
 
   const handleChange = (e) => {
