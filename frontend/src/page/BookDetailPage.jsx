@@ -19,6 +19,10 @@ const BookDetailPage = () => {
     navigate('/books');
   };
 
+  const handleUpdate = () => {
+    navigate(`/books/update/${id}`);
+  };
+
   useEffect(() => {
     dispatch(getBookById(id));
 
@@ -40,7 +44,10 @@ const BookDetailPage = () => {
           >
             Delete
           </button>
-          <button className='rounded bg-blue-500 px-4 py-2 text-white transition hover:bg-blue-600'>
+          <button
+            onClick={handleUpdate}
+            className='rounded bg-blue-500 px-4 py-2 text-white transition hover:bg-blue-600'
+          >
             Update
           </button>
         </div>

@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { ALL_BOOKS, BOOK_ID, CREATE_BOOK, DELETE_BOOK } from '../constant';
+import {
+  ALL_BOOKS,
+  BOOK_ID,
+  CREATE_BOOK,
+  DELETE_BOOK,
+  UPDATE_bOOK,
+} from '../constant';
 
 const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
@@ -38,6 +44,15 @@ const createBook = async (book, token) => {
   return response.data;
 };
 
+const updatedBook = async (token, id, data) => {
+  const response = await axiosInstance.patch(
+    `${UPDATE_bOOK}/${id}`,
+    data,
+    configToken(token),
+  );
+  return response.data;
+};
+
 const deleteBook = async (token, id) => {
   const response = await axiosInstance.delete(
     `${DELETE_BOOK}/${id}`,
@@ -46,5 +61,11 @@ const deleteBook = async (token, id) => {
   return response.data;
 };
 
-const bookService = { getAllBooks, getBookById, deleteBook, createBook };
+const bookService = {
+  getAllBooks,
+  getBookById,
+  deleteBook,
+  createBook,
+  updatedBook,
+};
 export default bookService;

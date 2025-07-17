@@ -21,6 +21,7 @@ const UpdatePage = () => {
     year: '',
     publisher: '',
   });
+
   const { title, author, image, description, year, publisher } = formData;
 
   const handleSubmit = (e) => {
@@ -38,6 +39,19 @@ const UpdatePage = () => {
     dispatch(getBookById(id));
   }, [dispatch, id]);
 
+  useEffect(() => {
+    if (books) {
+      setFormData({
+        title: books.title ?? '',
+        author: books.author || '',
+        image: books.image || '',
+        description: books.description || '',
+        year: books.year || '',
+        publisher: books.publisher || '',
+      });
+    }
+  }, [books]);
+
   return (
     <div className='mt-20'>
       <h1 className='mb-10 text-center text-2xl font-medium'>
@@ -47,43 +61,37 @@ const UpdatePage = () => {
         <Input
           label='title'
           placeholder='Book title'
-          defaultValue={books.title}
-          value={title === '' ? undefined : title}
+          value={title}
           onChange={handleChange}
         />
         <Input
           label='image'
           placeholder='Book image url'
-          defaultValue={books.image}
-          value={image === '' ? undefined : image}
+          value={image}
           onChange={handleChange}
         />
         <Input
           label='description'
           placeholder='Book description'
-          defaultValue={books.description}
-          value={description === '' ? undefined : description}
+          value={description}
           onChange={handleChange}
         />
         <Input
           label='author'
           placeholder='Book author'
-          defaultValue={books.author}
-          value={author === '' ? undefined : author}
+          value={author}
           onChange={handleChange}
         />
         <Input
           label='year'
           placeholder='Book year'
-          defaultValue={books.year}
-          value={year === '' ? undefined : year}
+          value={year}
           onChange={handleChange}
         />
         <Input
           label='publisher'
           placeholder='Book publisher'
-          defaultValue={books.publisher}
-          value={publisher === '' ? undefined : publisher}
+          value={publisher}
           onChange={handleChange}
         />
         <button
