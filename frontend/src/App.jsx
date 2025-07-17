@@ -7,6 +7,7 @@ import LoginPage from './page/LoginPage';
 import DashboardPage from './page/DashboardPage';
 import AccountPage from './page/AccountPage';
 import BookFormPage from './page/BookFormPage';
+import UpdatePage from './page/UpdatePage';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path='login' element={<LoginPage />} />
           <Route path='books' element={<BookPage />} />
           <Route path='books/new' element={<BookFormPage />} />
+          <Route path='books/update/:id' element={<UpdatePage />} />
           <Route path='books/:id' element={<BookDetailPage />} />
           <Route path='dashboard' element={<DashboardPage />} />
           <Route path='account' element={<AccountPage />} />
