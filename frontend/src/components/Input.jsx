@@ -4,7 +4,7 @@ const Input = ({
   placeholder,
   value,
   onChange,
-  defaultValue,
+  required,
 }) => {
   return (
     <div className='flex flex-col space-y-2'>
@@ -16,9 +16,9 @@ const Input = ({
         name={label}
         id={label}
         placeholder={placeholder}
-        defaultValue={defaultValue}
         value={value}
         onChange={onChange}
+        {...(required ? { required: true } : {})}
       />
     </div>
   );

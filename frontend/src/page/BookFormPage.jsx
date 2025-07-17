@@ -3,6 +3,7 @@ import Input from '../components/Input';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createBook } from '../features/book/bookSlice';
+import { toast } from 'sonner';
 
 const BookFormPage = () => {
   const [formData, setFormData] = useState({
@@ -21,6 +22,11 @@ const BookFormPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const book = { title, author, image, description, year, publisher };
+
+    if (!title || !author || !image || !year || !publisher) {
+      toast.error("Field can't be empty");
+    }
+
     dispatch(createBook(book));
     navigate('/books');
   };
@@ -41,12 +47,14 @@ const BookFormPage = () => {
           placeholder='Book title'
           value={title}
           onChange={handleChange}
+          required={true}
         />
         <Input
           label='image'
           placeholder='Book image url'
           value={image}
           onChange={handleChange}
+          required={true}
         />
         <Input
           label='description'
@@ -59,18 +67,21 @@ const BookFormPage = () => {
           placeholder='Book author'
           value={author}
           onChange={handleChange}
+          required={true}
         />
         <Input
           label='year'
           placeholder='Book year'
           value={year}
           onChange={handleChange}
+          required={true}
         />
         <Input
           label='publisher'
           placeholder='Book publisher'
           value={publisher}
           onChange={handleChange}
+          required={true}
         />
         <button
           type='submit'
