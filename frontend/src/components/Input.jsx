@@ -1,4 +1,11 @@
-const Input = ({ label, type = 'text', placeholder, value, onChange }) => {
+const Input = ({
+  label,
+  type = 'text',
+  placeholder,
+  value,
+  onChange,
+  defaultValue,
+}) => {
   return (
     <div className='flex flex-col space-y-2'>
       <label htmlFor={label} className='capitalize'>
@@ -9,6 +16,7 @@ const Input = ({ label, type = 'text', placeholder, value, onChange }) => {
         name={label}
         id={label}
         placeholder={placeholder}
+        defaultValue={defaultValue}
         value={value}
         onChange={onChange}
       />
